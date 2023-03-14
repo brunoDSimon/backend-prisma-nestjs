@@ -1,7 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { UnauthorizedInterceptor } from './common/erros/interceptors/unauthorized.interceptor';
 import { notFoundInterceptor } from './common/erros/interceptors/notfound.interceptor';
 import { DatabaseInterceptor } from './common/erros/interceptors/database.interceptor';
