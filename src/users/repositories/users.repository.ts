@@ -11,17 +11,42 @@ export class UsersRepository {
   public async create(createUserDto: CreateUserDto): Promise<UserEntity> {
     return this.prisma.user.create({
       data: createUserDto,
+      include: {
+        posts: {
+          select: {
+            title: true,
+            createAt: true,
+          },
+        },
+      },
     });
   }
 
   async findAll(): Promise<UserEntity[]> {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      include: {
+        posts: {
+          select: {
+            title: true,
+            createAt: true,
+          },
+        },
+      },
+    });
   }
 
   async findOne(id: number) {
     return this.prisma.user.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        posts: {
+          select: {
+            title: true,
+            createAt: true,
+          },
+        },
       },
     });
   }
@@ -31,6 +56,14 @@ export class UsersRepository {
     return this.prisma.user.update({
       where: { id: id },
       data: updateUserDto,
+      include: {
+        posts: {
+          select: {
+            title: true,
+            createAt: true,
+          },
+        },
+      },
     });
   }
 
